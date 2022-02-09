@@ -13,9 +13,8 @@ const db = mysql.createConnection(
         password: '5x)Q>3K=hfuVJ3_}',
         database: 'employee_db'
     },
-    console.log('Connected to the employee database')
-);
-
+    console.log('Connected to ')
+)
 
 app.get('/', (req, res) => {
     res.json({

@@ -16,6 +16,7 @@ const db = mysql.createConnection(
     console.log('Connected to the employee database')
 );
 
+db()
 
 app.get('/', (req, res) => {
     res.json({
