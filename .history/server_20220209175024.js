@@ -18,7 +18,7 @@ const db = mysql.createConnection(
 
 db.query(`SELECT * FROM employee`, (err, rows) => {
     console.log(rows);
-});
+})
 
 app.get('/', (req, res) => {
     res.json({
