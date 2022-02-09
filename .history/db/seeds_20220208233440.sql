@@ -20,21 +20,6 @@ INSERT INTO employee (first_name, last_name, role_id, manager_id)
 VALUES
     ('Jordan', "McGuire", 1, 1),
     ('Tyriq', "Wright", 2, null),
-    ('Alyssia', 'Ross', 2, null),
-    ('Bethany', 'Flores', 2, null),
-    ('Denny', 'Blair', 3, 1),
-    ('Meredith', 'Harwood', 4, null),
-    ('Regan', 'Park', 4, null),
-    ('Michael', 'Davis', 4, null),
-    ('Roger', 'Penn', 4, null),
-    ('Liliana', 'Pike', 5, 1),
-    ('Carrie', 'Riggs', 6, null),
-    ('Simon', 'Little', 6, null),
-    ('Daniel', 'Trujillo', 6, null),
-    ('Jared', 'Parsons', 7, 1),
-    ('Christine', 'Gibbons', 8, null),
-    ('Roberto', 'Myers', 8, null),
-    ('Timothy', 'Hyde', 8, null);
-
+    ('Alyssia', 'Ross')
 
 

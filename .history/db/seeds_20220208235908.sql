@@ -33,8 +33,7 @@ VALUES
     ('Daniel', 'Trujillo', 6, null),
     ('Jared', 'Parsons', 7, 1),
     ('Christine', 'Gibbons', 8, null),
-    ('Roberto', 'Myers', 8, null),
-    ('Timothy', 'Hyde', 8, null);
+    ('Roberto', 'Myers', 8, null)
 
 
 
