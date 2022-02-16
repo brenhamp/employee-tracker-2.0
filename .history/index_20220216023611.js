@@ -48,10 +48,7 @@ async function addRole(newRoleInfo) {
    deptID = await getDeptID(newRoleInfo.deptName);
    salary = newRoleInfo.salary;
    title = newRoleInfo.title;
-   query = 'INSERT INTO role (title, salary, department_id) VALUES (?,?,?)';
-   args = [title, salary, deptID];
-   await db.query(query, args);
-   console.log(`${title} role added.`)
+   query 
 }
 
 async function addEmp() {
@@ -177,7 +174,7 @@ async function main() {
       }
       case "addRole": {
           const newRole = await newRoleInfo();
-          await addRole(newRole);
+          await addRole(newRoleInfo);
           break;
       }
       case "addEmp": {

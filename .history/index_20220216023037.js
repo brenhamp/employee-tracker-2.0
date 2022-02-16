@@ -44,14 +44,8 @@ async function addDept(newDeptInfo) {
 };
 
 //Add new role
-async function addRole(newRoleInfo) {
-   deptID = await getDeptID(newRoleInfo.deptName);
-   salary = newRoleInfo.salary;
-   title = newRoleInfo.title;
-   query = 'INSERT INTO role (title, salary, department_id) VALUES (?,?,?)';
-   args = [title, salary, deptID];
-   await db.query(query, args);
-   console.log(`${title} role added.`)
+async function addRole() {
+  console.log("Role added");
 }
 
 async function addEmp() {
@@ -62,13 +56,6 @@ async function updateEmp() {
   console.log("Employee updated");
 }
 
-//get department ID
-async function getDeptID(deptName) {
-  query = "SELECT * FROM department WHERE department.name=?";
-  let args = [deptName];
-  const rows = await db.query(query, args);
-  return rows[0].id;
-}
 
 //Main menu
 async function showMenu() {
@@ -128,7 +115,6 @@ async function newDeptInfo() {
 
 //Ask for new role information
 async function newRoleInfo() {
-  const depts = await viewDepts();
   return inquirer.prompt([
     {
       type: "input",
@@ -146,7 +132,7 @@ async function newRoleInfo() {
       type: "list",
       name: "deptName",
       message: "Which department does this role belong to?",
-      choices: [...depts ]
+      choices: [...departments]
 
     }
   ])
@@ -177,7 +163,7 @@ async function main() {
       }
       case "addRole": {
           const newRole = await newRoleInfo();
-          await addRole(newRole);
+          await addRole(newRoleInfo);
           break;
       }
       case "addEmp": {

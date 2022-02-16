@@ -48,10 +48,6 @@ async function addRole(newRoleInfo) {
    deptID = await getDeptID(newRoleInfo.deptName);
    salary = newRoleInfo.salary;
    title = newRoleInfo.title;
-   query = 'INSERT INTO role (title, salary, department_id) VALUES (?,?,?)';
-   args = [title, salary, deptID];
-   await db.query(query, args);
-   console.log(`${title} role added.`)
 }
 
 async function addEmp() {
@@ -65,9 +61,7 @@ async function updateEmp() {
 //get department ID
 async function getDeptID(deptName) {
   query = "SELECT * FROM department WHERE department.name=?";
-  let args = [deptName];
-  const rows = await db.query(query, args);
-  return rows[0].id;
+  
 }
 
 //Main menu
@@ -177,7 +171,7 @@ async function main() {
       }
       case "addRole": {
           const newRole = await newRoleInfo();
-          await addRole(newRole);
+          await addRole(newRoleInfo);
           break;
       }
       case "addEmp": {

@@ -67,7 +67,7 @@ async function getDeptID(deptName) {
   query = "SELECT * FROM department WHERE department.name=?";
   let args = [deptName];
   const rows = await db.query(query, args);
-  return rows[0].id;
+  return rows[].id;
 }
 
 //Main menu
