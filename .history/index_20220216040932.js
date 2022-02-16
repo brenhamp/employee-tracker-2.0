@@ -106,8 +106,7 @@ async function getRoleID(role) {
   let args = [role];
   let rows = await db.query(query, args);
   console.log(rows);
-  console.log(rows[0].id);
-  return rows[0].id;
+  return rows.id;
 }
 
 //get list of managers

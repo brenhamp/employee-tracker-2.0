@@ -57,11 +57,11 @@ async function addRole(newRoleInfo) {
 //Add new employee
 async function addEmp(newEmpInfo) {
   roleID = await getRoleID(newEmpInfo.role);
-  // managerID = await getEmpID(newEmpInfo.manager);
+  managerID = await getEmpID(newEmpInfo.manager);
   query = 'INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?,?,?,?)';
-  args = [newEmpInfo.firstName, newEmpInfo.lastName, roleID, newEmpInfo.manager];
+  args = [newEmpInfo.firstName, newEmpInfo.lastName, roleID, managerID];
   rows = await db.query(query, args);
-  console.log(`${newEmpInfo.firstName} ${newEmpInfo.lastName} added to the database.`)
+  console.log(`${newEmpInfo.first_name} ${newEmpInfo.last_name} added to the database.`)
 }
 
 async function updateEmp() {
@@ -104,10 +104,8 @@ async function getDeptID(deptName) {
 async function getRoleID(role) {
   query = "SELECT * FROM role WHERE role.title=?";
   let args = [role];
-  let rows = await db.query(query, args);
-  console.log(rows);
-  console.log(rows[0].id);
-  return rows[0].id;
+  const rows = await db.query(query, args);
+  return rows.id;
 }
 
 //get list of managers
@@ -217,6 +215,7 @@ async function newRoleInfo() {
 
 //Ask for new employee information
 async function newEmpInfo() {
+  const managers = await getManagers();
   const roles = await getRoles();
   return inquirer.prompt([
     {
@@ -241,13 +240,8 @@ async function newEmpInfo() {
     {
       type: "list",
       name: "manager",
-      message: "Is this employee a manager?",
-      choices: [
-        {name: "Yes",
-         value: "1"},
-         {name: "No",
-        value: null}
-      ]
+      message: "Who is their manager?",
+      choices: [...managers]
     }
   ])
 }

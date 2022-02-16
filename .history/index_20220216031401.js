@@ -57,39 +57,15 @@ async function addRole(newRoleInfo) {
 //Add new employee
 async function addEmp(newEmpInfo) {
   roleID = await getRoleID(newEmpInfo.role);
-  // managerID = await getEmpID(newEmpInfo.manager);
-  query = 'INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?,?,?,?)';
-  args = [newEmpInfo.firstName, newEmpInfo.lastName, roleID, newEmpInfo.manager];
-  rows = await db.query(query, args);
-  console.log(`${newEmpInfo.firstName} ${newEmpInfo.lastName} added to the database.`)
+  managerID = await getEmpID(newEmpInfo.manager);
+  query = 'INSERT INTO employee (first_name, last_name, role_id, employee_id) VALUES (?,?,?,?)';
+  args = [newEmpInfo.first_name, newEmpInfo.last_name, roleID, managerID];
+  await db.query(query, args);
+  console.log(`${newEmpInfo.first_name} ${newEmpInfo.last_name} added to the database.`)
 }
 
 async function updateEmp() {
   console.log("Employee updated");
-}
-
-//get employee's full names
-async function empFullName(fullName) {
-  //put first and last name together with a space
-  employeeName = fullName.split(" ");
-  if(employeeName.length == 2) {
-    return employeeName;
-  }
-  let first_name = " ";
-  let last_name = employeeName[employeeName.length-1];
-  for (let i=0; i< employeeName.length-1; i++) {
-    first_name = first_name + employeeName[i] + " ";
-  }
-  return [first_name.trim(), last_name];
-}
-
-//get employee ID
-async function getEmpID(fullName) {
-  employeeName = empFullName(fullName);
-  query = 'SELECT id FROM employee WHERE employee.first_name=? AND employee.last_name=?';
-  args = [employeeName[0], employeeName[1]];
-  const rows = await db.query(query, args);
-  return rows.id;
 }
 
 //get department ID
@@ -97,17 +73,15 @@ async function getDeptID(deptName) {
   query = "SELECT * FROM department WHERE department.name=?";
   let args = [deptName];
   const rows = await db.query(query, args);
-  return rows.id;
+  return rows[0].id;
 }
 
 //get role ID
-async function getRoleID(role) {
+async function getRoleID(roleTitle) {
   query = "SELECT * FROM role WHERE role.title=?";
-  let args = [role];
-  let rows = await db.query(query, args);
-  console.log(rows);
-  console.log(rows[0].id);
-  return rows[0].id;
+  let args = [roleTitle];
+  const rows = await db.query(query, args);
+  return rows.id;
 }
 
 //get list of managers
@@ -129,7 +103,7 @@ async function getRoles() {
   for (const row of rows) {
     roles.push(row.title);
   }
-  return roles;
+  re
 }
 
 
@@ -217,7 +191,8 @@ async function newRoleInfo() {
 
 //Ask for new employee information
 async function newEmpInfo() {
-  const roles = await getRoles();
+  const managers = await getManagers();
+  const roles = await viewRoles();
   return inquirer.prompt([
     {
       type: "input",
@@ -233,7 +208,7 @@ async function newEmpInfo() {
 
     {
       type: "list",
-      name: "role",
+      name: "roleTitle",
       message: "What is this employee's role?",
       choices: [...roles]
     },
@@ -241,13 +216,8 @@ async function newEmpInfo() {
     {
       type: "list",
       name: "manager",
-      message: "Is this employee a manager?",
-      choices: [
-        {name: "Yes",
-         value: "1"},
-         {name: "No",
-        value: null}
-      ]
+      message: "Who is their manager?",
+      choices: [...managers]
     }
   ])
 }

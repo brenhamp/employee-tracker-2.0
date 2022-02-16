@@ -57,7 +57,7 @@ async function addRole(newRoleInfo) {
 //Add new employee
 async function addEmp(newEmpInfo) {
   roleID = await getRoleID(newEmpInfo.role);
-  // managerID = await getEmpID(newEmpInfo.manager);
+  managerID = await getEmpID(newEmpInfo.manager);
   query = 'INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?,?,?,?)';
   args = [newEmpInfo.firstName, newEmpInfo.lastName, roleID, newEmpInfo.manager];
   rows = await db.query(query, args);
@@ -93,33 +93,31 @@ async function getEmpID(fullName) {
 }
 
 //get department ID
-async function getDeptID(deptName) {
-  query = "SELECT * FROM department WHERE department.name=?";
-  let args = [deptName];
-  const rows = await db.query(query, args);
-  return rows.id;
-}
+// async function getDeptID(deptName) {
+//   query = "SELECT * FROM department WHERE department.name=?";
+//   let args = [deptName];
+//   const rows = await db.query(query, args);
+//   return rows.department_id;
+// }
 
 //get role ID
-async function getRoleID(role) {
-  query = "SELECT * FROM role WHERE role.title=?";
-  let args = [role];
-  let rows = await db.query(query, args);
-  console.log(rows);
-  console.log(rows[0].id);
-  return rows[0].id;
-}
+// async function getRoleID(role) {
+//   query = "SELECT * FROM role WHERE role.title=?";
+//   let args = [role];
+//   const rows = await db.query(query, args);
+//   return rows.id;
+// }
 
 //get list of managers
-async function getManagers() {
-  query = "SELECT * FROM employee WHERE manager_id = 1";
-  rows = await db.query(query);
-  managerNames = [];
-  for (const employee of rows) {
-    managerNames.push(employee.first_name + " " + employee.last_name);
-  }
-  return managerNames;
-}
+// async function getManagers() {
+//   query = "SELECT * FROM employee WHERE manager_id = 1";
+//   rows = await db.query(query);
+//   managerNames = [];
+//   for (const employee of rows) {
+//     managerNames.push(employee.first_name + " " + employee.last_name);
+//   }
+//   return managerNames;
+// }
 
 //get role titles
 async function getRoles() {

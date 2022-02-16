@@ -103,11 +103,9 @@ async function getDeptID(deptName) {
 //get role ID
 async function getRoleID(role) {
   query = "SELECT * FROM role WHERE role.title=?";
-  let args = [role];
-  let rows = await db.query(query, args);
+  rows = await db.query(query, role);
   console.log(rows);
-  console.log(rows[0].id);
-  return rows[0].id;
+  return rows.id;
 }
 
 //get list of managers
