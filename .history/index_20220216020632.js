@@ -24,10 +24,7 @@ async function viewRoles() {
 }
 
 async function viewEmps() {
-  query = "SELECT * FROM employee";
-  employees = await db.query(query);
-  console.table(employees);
-  return employees;
+  console.log("Emps viewed");
 }
 
 async function addDept() {

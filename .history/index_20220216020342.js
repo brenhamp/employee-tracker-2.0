@@ -10,24 +10,22 @@ const db = new Database({
 
 //View all departments
 async function viewDepts() {
+  console.log("departments viewed");
   query = "SELECT * FROM department";
-  departments = await db.query(query);
-  console.table(departments);
-  return departments;
+  rows = db.query(query);
+  deptNames = [];
+  for (const row of rows) {
+    deptNames.push(row.name);
+  }
+  return deptNames;
 }
 
 async function viewRoles() {
-  query = "SELECT * FROM role";
-  roles = await db.query(query);
-  console.table(roles);
-  return roles;
+  console.log("Roles viewed");
 }
 
 async function viewEmps() {
-  query = "SELECT * FROM employee";
-  employees = await db.query(query);
-  console.table(employees);
-  return employees;
+  console.log("Emps viewed");
 }
 
 async function addDept() {

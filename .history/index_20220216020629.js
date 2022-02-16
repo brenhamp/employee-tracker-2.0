@@ -17,17 +17,14 @@ async function viewDepts() {
 }
 
 async function viewRoles() {
-  query = "SELECT * FROM role";
+  query = "SELECT * FROM department";
   roles = await db.query(query);
   console.table(roles);
   return roles;
 }
 
 async function viewEmps() {
-  query = "SELECT * FROM employee";
-  employees = await db.query(query);
-  console.table(employees);
-  return employees;
+  console.log("Emps viewed");
 }
 
 async function addDept() {

@@ -24,10 +24,10 @@ async function viewRoles() {
 }
 
 async function viewEmps() {
-  query = "SELECT * FROM employee";
-  employees = await db.query(query);
-  console.table(employees);
-  return employees;
+  query = "SELECT * FROM department";
+  departments = await db.query(query);
+  console.table(departments);
+  return departments;
 }
 
 async function addDept() {
