@@ -32,18 +32,6 @@ async function addDept() {
   console.log("Department added");
 }
 
-async function addRole() {
-  console.log("Role added");
-}
-
-async function addEmp() {
-  console.log("Employee added");
-}
-
-async function updateEmp() {
-  console.log("Employee updated");
-}
-
 
 
 async function showMenu() {
@@ -119,10 +107,6 @@ async function main() {
       case "addEmp": {
           await addEmp();
           break;
-      }
-      case "updateEmp": {
-        await updateEmp();
-        break;
       }
       case "quit": {
           exit = true;

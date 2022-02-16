@@ -121,8 +121,7 @@ async function main() {
           break;
       }
       case "updateEmp": {
-        await updateEmp();
-        break;
+        
       }
       case "quit": {
           exit = true;

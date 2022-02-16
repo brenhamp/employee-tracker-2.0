@@ -20,29 +20,7 @@ async function viewDepts() {
   return deptNames;
 }
 
-async function viewRoles() {
-  console.log("Roles viewed");
-}
-
-async function viewEmps() {
-  console.log("Emps viewed");
-}
-
-async function addDept() {
-  console.log("Department added");
-}
-
-async function addRole() {
-  console.log("Role added");
-}
-
-async function addEmp() {
-  console.log("Employee added");
-}
-
-async function updateEmp() {
-  console.log("Employee updated");
-}
+async function viewR
 
 
 
@@ -119,10 +97,6 @@ async function main() {
       case "addEmp": {
           await addEmp();
           break;
-      }
-      case "updateEmp": {
-        await updateEmp();
-        break;
       }
       case "quit": {
           exit = true;

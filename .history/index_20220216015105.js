@@ -20,37 +20,14 @@ async function viewDepts() {
   return deptNames;
 }
 
-async function viewRoles() {
-  console.log("Roles viewed");
-}
-
-async function viewEmps() {
-  console.log("Emps viewed");
-}
-
-async function addDept() {
-  console.log("Department added");
-}
-
-async function addRole() {
-  console.log("Role added");
-}
-
-async function addEmp() {
-  console.log("Employee added");
-}
-
-async function updateEmp() {
-  console.log("Employee updated");
-}
 
 
 
 async function showMenu() {
-  return inquirer.prompt([
+  const { choice } = await inquirer.prompt([
     {
       type: "list",
-      name: "action",
+      name: "choice",
       message: "What would you like to do?",
       choices: [
         {
@@ -88,51 +65,36 @@ async function showMenu() {
       ],
     },
   ]);
-}
-
-
-async function main() {
-  let exit = false;
-  while (!exit) {
-    const prompt = await showMenu();
-    switch (prompt.action) {
-      case "viewDepts": {
-        await viewDepts();
+  switch (choice.value) {
+    case "viewDepts": {
+      await viewDepts();
+      break;
+    }
+    case "viewRoles": {
+        await viewRoles();
         break;
-      }
-      case "viewRoles": {
-          await viewRoles();
-          break;
-      }
-      case "viewEmps": {
-          await viewEmps();
-          break;
-      }
-      case "addDept": {
-          await addDept();
-          break;
-      }
-      case "addRole": {
-          await addRole();
-          break;
-      }
-      case "addEmp": {
-          await addEmp();
-          break;
-      }
-      case "updateEmp": {
-        await updateEmp();
+    }
+    case "viewEmps": {
+        await viewEmps();
         break;
-      }
-      case "quit": {
-          exit = true;
-          process.exit(0);
-      }
-
-      default: console.log(`Unknown action ${prompt.action}`)
+    }
+    case "addDept": {
+        await addDept();
+        break;
+    }
+    case "addRole": {
+        await addRole();
+        break;
+    }
+    case "addEmp": {
+        await addEmp();
+        break;
+    }
+    case "quit": {
+        exit = true;
+        process.exit(0);
     }
   }
-
 }
 
 process.on("exit", async function (code) {
@@ -140,7 +102,12 @@ process.on("exit", async function (code) {
   return console.log(`Exiting with code ${code}`);
 });
 
-main();
+function main() {
+  showMenu();
+  console.log("function passed");
+}
+
+  
 
 
 // router.get('department', (req, res) => {

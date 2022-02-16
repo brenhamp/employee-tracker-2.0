@@ -120,10 +120,7 @@ async function main() {
           await addEmp();
           break;
       }
-      case "updateEmp": {
-        await updateEmp();
-        break;
-      }
+      case
       case "quit": {
           exit = true;
           process.exit(0);

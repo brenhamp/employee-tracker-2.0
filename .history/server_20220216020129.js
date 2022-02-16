@@ -2,6 +2,7 @@ const db = require('./db/connection');
 const express = require('express');
 const PORT = process.env.PORT || 3001;
 const app = express();
+let index = require ('./index');
 
 // app.use(express.urlencoded({ extended: false }));
 // app.use(express.json());
@@ -28,3 +29,7 @@ db.connect(err => {
       console.log(`Server running on port ${PORT}`);
     });
   });
+
+// app.listen(PORT, () => {
+//     console.log(`Server running on port ${PORT}`);
+// });

@@ -20,29 +20,6 @@ async function viewDepts() {
   return deptNames;
 }
 
-async function viewRoles() {
-  console.log("Roles viewed");
-}
-
-async function viewEmps() {
-  console.log("Emps viewed");
-}
-
-async function addDept() {
-  console.log("Department added");
-}
-
-async function addRole() {
-  console.log("Role added");
-}
-
-async function addEmp() {
-  console.log("Employee added");
-}
-
-async function updateEmp() {
-  console.log("Employee updated");
-}
 
 
 
@@ -53,38 +30,14 @@ async function showMenu() {
       name: "action",
       message: "What would you like to do?",
       choices: [
-        {
-          name: "View all departments",
-          value: "viewDepts",
-        },
-        {
-          name: "View all roles",
-          value: "viewRoles",
-        },
-        {
-          name: "View all employees",
-          value: "viewEmps",
-        },
-        {
-          name: "Add a new department",
-          value: "addDept",
-        },
-        {
-          name: "Add a new role",
-          value: "addRole",
-        },
-        {
-          name: "Add a new employee",
-          value: "addEmp",
-        },
-        {
-          name: "Update an employee's role",
-          value: "updateEmp",
-        },
-        {
-          name: "Exit the database",
-          value: "quit",
-        },
+        "View all departments",
+        "View all roles",
+        "View all employees",
+        "Add a new department",
+        "Add a new role",
+        "Add a new employee",
+        "Update an employee's role",
+        "Exit the database"
       ],
     },
   ]);
@@ -120,16 +73,10 @@ async function main() {
           await addEmp();
           break;
       }
-      case "updateEmp": {
-        await updateEmp();
-        break;
-      }
       case "quit": {
           exit = true;
           process.exit(0);
       }
-
-      default: console.log(`Unknown action ${prompt.action}`)
     }
   }
 
