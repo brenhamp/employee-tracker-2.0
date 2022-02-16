@@ -112,7 +112,7 @@ async function getDeptID(deptName) {
   query = "SELECT * FROM department WHERE department.name=?";
   let args = [deptName];
   const rows = await db.query(query, args);
-  console.log(rows[0].id);
+  console
   return rows[0].id;
 }
 
@@ -121,8 +121,7 @@ async function getRoleID(role) {
   query = "SELECT * FROM role WHERE role.title=?";
   let args = [role];
   let rows = await db.query(query, args);
-  // console.log(rows);
-  // console.log(rows[0].id);
+  console.log(rows[0].id);
   return rows[0].id;
 }
 
