@@ -6,10 +6,8 @@ async function viewDepts() {
   console.log("departments viewed");
 }
 
-main();
-
-function main() {
-    showMenu();
+async function main() {
+    await showMenu();
     console.log("function passed");
     // .then(answers => {
     //     if (answers.action === 'viewDepts') {
@@ -28,7 +26,6 @@ function main() {
     // })
     // }
   }
-
 async function showMenu() {
   const { choice } = await inquirer.prompt([
     {
@@ -73,7 +70,7 @@ async function showMenu() {
   ]);
   switch (choice.value) {
     case "viewDepts": {
-      await viewDepts();
+      await showDepts();
       break;
     }
     case "viewRoles": {
@@ -111,6 +108,7 @@ process.on("exit", async function (code) {
 
   
 
+main();
 
 // router.get('department', (req, res) => {
 //     const sql = `SELECT * FROM department`;

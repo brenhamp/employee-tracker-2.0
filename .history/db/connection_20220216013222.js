@@ -6,6 +6,6 @@ const db = mysql.createConnection(
         user: 'root',
         password: '5x)Q>3K=hfuVJ3_}',
         database: 'employee_db'
-    });
+    }
 
 module.exports = db;

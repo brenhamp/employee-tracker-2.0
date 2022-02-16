@@ -29,8 +29,8 @@ function main() {
     // }
   }
 
-async function showMenu() {
-  const { choice } = await inquirer.prompt([
+function showMenu() {
+  const { choice } = inquirer.prompt([
     {
       type: "list",
       name: "choice",
@@ -73,7 +73,7 @@ async function showMenu() {
   ]);
   switch (choice.value) {
     case "viewDepts": {
-      await viewDepts();
+      await showDepts();
       break;
     }
     case "viewRoles": {

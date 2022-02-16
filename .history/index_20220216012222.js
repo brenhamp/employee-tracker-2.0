@@ -8,8 +8,8 @@ async function viewDepts() {
 
 main();
 
-function main() {
-    showMenu();
+async function main() {
+    await showMenu();
     console.log("function passed");
     // .then(answers => {
     //     if (answers.action === 'viewDepts') {
@@ -73,7 +73,7 @@ async function showMenu() {
   ]);
   switch (choice.value) {
     case "viewDepts": {
-      await viewDepts();
+      await showDepts();
       break;
     }
     case "viewRoles": {

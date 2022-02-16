@@ -18,9 +18,9 @@ let index = require ('./index');
 //     });
 // });
 
-// app.use((req, res) => {
-//     res.status(404).end();
-// });
+app.use((req, res) => {
+    res.status(404).end();
+});
 
 db.connect(err => {
     if (err) throw err;

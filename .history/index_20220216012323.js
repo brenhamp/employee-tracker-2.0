@@ -73,7 +73,7 @@ async function showMenu() {
   ]);
   switch (choice.value) {
     case "viewDepts": {
-      await viewDepts();
+      await showDepts();
       break;
     }
     case "viewRoles": {

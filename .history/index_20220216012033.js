@@ -6,28 +6,6 @@ async function viewDepts() {
   console.log("departments viewed");
 }
 
-main();
-
-function main() {
-    showMenu();
-    console.log("function passed");
-    // .then(answers => {
-    //     if (answers.action === 'viewDepts') {
-    //         const sql = `SELECT * FROM department`;
-    //         db.query(sql, (err, rows) => {
-    //             if(err) {
-    //                 res.status(500).json({ error: err.message });
-    //                 return;
-    //             }
-    //             res.json({
-    //                 message: 'success',
-    //                 data: rows
-    //             });
-    //         });
-    //     }
-    // })
-    // }
-  }
 
 async function showMenu() {
   const { choice } = await inquirer.prompt([
@@ -73,7 +51,7 @@ async function showMenu() {
   ]);
   switch (choice.value) {
     case "viewDepts": {
-      await viewDepts();
+      await showDepts();
       break;
     }
     case "viewRoles": {
@@ -108,9 +86,30 @@ process.on("exit", async function (code) {
   return console.log(`Exiting with code ${code}`);
 });
 
-
+async function main() {
+    let exit = false;
+    await showMenu();
+    console.log("function passed");
+    // .then(answers => {
+    //     if (answers.action === 'viewDepts') {
+    //         const sql = `SELECT * FROM department`;
+    //         db.query(sql, (err, rows) => {
+    //             if(err) {
+    //                 res.status(500).json({ error: err.message });
+    //                 return;
+    //             }
+    //             res.json({
+    //                 message: 'success',
+    //                 data: rows
+    //             });
+    //         });
+    //     }
+    // })
+    // }
+  }
   
 
+main();
 
 // router.get('department', (req, res) => {
 //     const sql = `SELECT * FROM department`;
