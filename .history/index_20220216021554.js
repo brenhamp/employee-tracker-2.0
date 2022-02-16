@@ -39,9 +39,8 @@ async function addDept(newDeptInfo) {
   deptName = newDeptInfo.deptName;
   query = "INSERT INTO department (name) VALUES (?)";
   let args = [deptName];
-  await db.query(query, args);
-  console.log(`${deptName} department added.`)
-};
+  await db.query()
+}
 
 async function addRole() {
   console.log("Role added");

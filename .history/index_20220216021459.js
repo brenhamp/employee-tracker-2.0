@@ -37,11 +37,8 @@ async function viewEmps() {
 //Add new department
 async function addDept(newDeptInfo) {
   deptName = newDeptInfo.deptName;
-  query = "INSERT INTO department (name) VALUES (?)";
-  let args = [deptName];
-  await db.query(query, args);
-  console.log(`${deptName} department added.`)
-};
+  query = "INSERT INTO department (NAME"
+}
 
 async function addRole() {
   console.log("Role added");

@@ -35,13 +35,9 @@ async function viewEmps() {
 
 
 //Add new department
-async function addDept(newDeptInfo) {
-  deptName = newDeptInfo.deptName;
-  query = "INSERT INTO department (name) VALUES (?)";
-  let args = [deptName];
-  await db.query(query, args);
-  console.log(`${deptName} department added.`)
-};
+async function addDept() {
+  console.log("Department added");
+}
 
 async function addRole() {
   console.log("Role added");
@@ -101,16 +97,7 @@ async function showMenu() {
   ]);
 }
 
-//Ask for new department name
-async function newDeptInfo() {
-  return inquirer.prompt([
-    {
-      type: "input",
-      name: "deptName",
-      message: "What is the name of the new department?"
-    }
-  ])
-}
+//
 
 async function main() {
   let exit = false;

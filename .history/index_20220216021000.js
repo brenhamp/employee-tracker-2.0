@@ -16,7 +16,6 @@ async function viewDepts() {
   return departments;
 }
 
-//View all roles
 async function viewRoles() {
   query = "SELECT * FROM role";
   roles = await db.query(query);
@@ -24,7 +23,6 @@ async function viewRoles() {
   return roles;
 }
 
-//View all employees
 async function viewEmps() {
   query = "SELECT * FROM employee";
   employees = await db.query(query);
@@ -32,16 +30,9 @@ async function viewEmps() {
   return employees;
 }
 
-
-
-//Add new department
-async function addDept(newDeptInfo) {
-  deptName = newDeptInfo.deptName;
-  query = "INSERT INTO department (name) VALUES (?)";
-  let args = [deptName];
-  await db.query(query, args);
-  console.log(`${deptName} department added.`)
-};
+async function addDept() {
+  console.log("Department added");
+}
 
 async function addRole() {
   console.log("Role added");
@@ -56,7 +47,7 @@ async function updateEmp() {
 }
 
 
-//Main menu
+
 async function showMenu() {
   return inquirer.prompt([
     {
@@ -101,16 +92,6 @@ async function showMenu() {
   ]);
 }
 
-//Ask for new department name
-async function newDeptInfo() {
-  return inquirer.prompt([
-    {
-      type: "input",
-      name: "deptName",
-      message: "What is the name of the new department?"
-    }
-  ])
-}
 
 async function main() {
   let exit = false;
@@ -130,7 +111,7 @@ async function main() {
           break;
       }
       case "addDept": {
-          const newDept = await newDeptInfo();
+          const newDept = await newDeptInfo
           await addDept(newDept);
           break;
       }
