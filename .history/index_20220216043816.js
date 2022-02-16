@@ -66,7 +66,7 @@ async function addEmp(newEmpInfo) {
 
 async function updateEmp(newEmpInfo) {
   roleID = await getRoleID(newEmpInfo.role);
-  employee = await empFullName(newEmpInfo.empName);
+  employee = await empFullName(newEmpInfo.role);
   query = "UPDATE employee SET role_id=? WHERE employee.first_name=? AND employee.last_name=?";
   args = [roleID, employee[0], employee[1]];
   rows = await db.query(query, args);
@@ -110,6 +110,7 @@ async function getRoleID(role) {
   query = "SELECT * FROM role WHERE role.title=?";
   let args = [role];
   let rows = await db.query(query, args);
+  console.log(rows);
   console.log(rows[0].id);
   return rows[0].id;
 }
@@ -134,17 +135,6 @@ async function getRoles() {
     roles.push(row.title);
   }
   return roles;
-}
-
-//get list of employees for inquirer
-async function getEmps() {
-  query = "SELECT * FROM employee";
-  rows = await db.query(query);
-  employees = [];
-  for (const row of rows) {
-    employees.push(row.first_name + " " + row.last_name);
-  }
-  return employees;
 }
 
 
@@ -269,8 +259,8 @@ async function newEmpInfo() {
 
 //Ask about changing an employee's role
 async function updateEmpInfo() {
-  const employees = await getEmps();
-  const roles = await getRoles();
+  const employees = await viewEmps();
+  const roles = await viewRoles();
   return inquirer .prompt([
     {
       type: "list",
@@ -280,7 +270,7 @@ async function updateEmpInfo() {
     },
     {
       type: "list",
-      name: "role",
+      name: "newRole",
       message: "What is their new role?",
       choices: [...roles]
     }

@@ -66,7 +66,7 @@ async function addEmp(newEmpInfo) {
 
 async function updateEmp(newEmpInfo) {
   roleID = await getRoleID(newEmpInfo.role);
-  employee = await empFullName(newEmpInfo.empName);
+  employee = await empFullName(newEmpInfo.role);
   query = "UPDATE employee SET role_id=? WHERE employee.first_name=? AND employee.last_name=?";
   args = [roleID, employee[0], employee[1]];
   rows = await db.query(query, args);
